@@ -1,0 +1,31 @@
+<div>
+    <div style="float: right;">
+        <label>Select  Languge</label>
+        <select name="languages" id="language"  [(ngModel)]="preferedLanguage" (ngModelChange)="changeCountry()">
+            <option value="en" >English</option>
+            <option value="da">Danish</option>
+            <option value="nl">Dutch</option>           
+          </select>
+    </div>
+    <h1>{{ 'title' | translate }}</h1>
+    <div *ngIf="!this.user">
+    <p> Username: ...  </p>    
+    </div>
+    <div *ngIf="this.user">
+        <p> Username: {{this.user.username}}</p>
+        <p *ngIf="this.user.email && this.user.email != ''"> Email: {{this.user.email}}</p>
+    </div>
+    <div>
+    <label> First Name: </label>
+    <input [disabled]="loading" type ="text" name="this.user.firstName" [(ngModel)]="this.user.firstName"  />
+    <br/>
+    <label> Last Name: </label>
+    <input [disabled]="loading" type ="text" name="this.user.lastName" [(ngModel)]="this.user.lastName" />
+    <br/>
+    <input type ="button" value ="Save" (click)="saveProfile()" />
+    </div>
+    <p *ngIf="loading  && !saved"> Loading profile... </p>
+    <p *ngIf="saved && loading"> Saving profile... </p>
+    <p *ngIf="showerror"> {{errormsg}} </p>
+      
+    </div>
